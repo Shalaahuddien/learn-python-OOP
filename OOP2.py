@@ -1,4 +1,8 @@
 class Person:
+    @staticmethod
+    def static_method():
+        return 'I am availe from the class'  
+    
     def __init__(self, firstname, lastname, age, country):
         self.firstname = firstname
         self.lastname = lastname
@@ -10,7 +14,8 @@ class Person:
     def add_skill(self, skill):
         self.skills.append(skill)
     def get_skills(self):
-        return ', '.join(self.skills)
+        result = ', '.join(self.skills) if len( self.skills) > 0 else 'No skills'
+        return result
         
 p = Person('John', 'Doe', 25, 'UK')
 print(p)
@@ -32,16 +37,54 @@ print(p.get_skills())
 class Student(Person):
     def __init__(self, firstname, lastname, age, country, gender):
         self.gender = gender
+        self.hobbies = []
+        self.points = 0
         super().__init__(firstname, lastname, age, country)
         
     def get_perrson_info(self):
         pronoun = 'He' if self.gender == 'Male' else 'She'
+        result = ', '.join(self.skills) if len( self.skills) > 0 else ''
+        statement = result and f'{pronoun} has the following skills:{result}.'
+        return f'{pronoun} is {self.firstname} {self.lastname}. {pronoun} is from {self.country}. {pronoun} is {self.age} years old. {statement} '
         # return super().get_perrson_info()
-        
-s = Student('Elina', 'Sami',21, 'Finland', 'Female')
+    def add_hoby(self, hobby):
+        self.hobbies.append(hobby)    
+    def get_hobbies(self):
+        return self.hobbies
+    def add_point(self, point = 5):
+        self.points = self.points + point
+    def get_points(self):
+        return self.points
+    
+s = Student('Elina', 'Sami', 21, 'Finland', 'Female')
 print(s.firstname)
+
+s.add_skill('Python')
+s.add_skill('Git and GitHub')
+s.add_skill('React')
+s.add_skill('Data Analysis')
 print(s.get_perrson_info())
+
+print(s.get_skills())
+s.add_point()
+print(s.get_skills())
+s.add_point(95)
+print(s.get_points())
+
+print(Person.static_method())
 
 
 # value = 'TRUE VALUE' if 4 < 2 else 'False value'
 # print(value)    
+
+
+class Animal:
+    def _init__(self, name, age, legs):
+        self.name = name
+        self.age = age
+        self.legs = legs
+    def methods_class(self):
+        pass
+    
+dog = Animal('Fluffy', 8, 4)
+cat = Animal('Murri', 4, 4)
