@@ -1,11 +1,12 @@
 # Class
 
 class Dog:
-    name = 'Fluffy Dog'
-    def sample_func():
-        return 'this a smaple function'
-    pass
+    def __init__(self, name, age, country):
+        self.name = name
+        self.age = age
+        self.country = country
 
-print(Dog)
-print(Dog.name)
-print(Dog.sample_func())
+d = Dog('Fluffy',8, 'Greece')
+print(d.name)
+print(d.age)
+print(d.country)
